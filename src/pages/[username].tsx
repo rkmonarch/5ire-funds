@@ -24,9 +24,15 @@ import Header from "@/components/title";
 import { MdEmail } from "react-icons/md";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IconType } from "react-icons";
-import { useContractRead, usePrepareContractWrite, useContractWrite, useWaitForTransaction } from 'wagmi'
+import {
+  useContractRead,
+  usePrepareContractWrite,
+  useContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
 import abi from "../contract/abi.json";
 import { contractAddress } from "@/contract/constant";
+import { utils } from "ethers";
 
 interface UserAccount {
   profileImage: string;
@@ -45,8 +51,6 @@ export const socialLinkComponent = (
   text: string,
   icon: IconType
 ) => {
-  
-
   return (
     <HStack spacing={2}>
       <Box minW="xl">
@@ -97,59 +101,69 @@ const User = ({ parsedData }: { parsedData: UserAccount }) => {
   const [linkedinUrl, setLinkedinUrl] = useState("");
   const [twitterUrl, setTwitterUrl] = useState("");
   const [githubUrl, setGithubUrl] = useState("");
+  const [message, setMessage] = useState("");
+  const [amount, setAmount] = useState("0");
 
   const toast = useToast();
   const { data, isError, isLoading } = useContractRead({
-    address:contractAddress,
+    address: contractAddress,
     abi: abi,
-    functionName: 'getProfile',
-    args: ['rahulk']
+    functionName: "getProfile",
+    args: [router.query.username],
   });
 
   const fetchData = async () => {
     try {
-        const link = `https://${data.cid}.ipfs.w3s.link/${data.userAddress}.json`;
-        const response = await fetch(link);
-        const parsedData: UserAccount = await response.json();
-        console.log("daaata",parsedData);
+      const link = `https://${(data as any).cid}.ipfs.w3s.link/${(data as any).userAddress}.json`;
+      const response = await fetch(link);
+      const parsedData: UserAccount = await response.json();
+      setIcon(parsedData.profileImage);
+      setName(parsedData.name);
+      setBio(parsedData.bio);
+      setEmail(parsedData.email);
+      setLinkedinUrl(`https://${parsedData.linkedinUrl}`);
+      setTwitterUrl(`https://${parsedData.twitterUrl}`);
+      setGithubUrl(`https://${parsedData.githubUrl}`);
+      return {
+        props: {
+          parsedData,
+        },
+      };
+    } catch (error) {
+      return {
+        notFound: true,
+      };
+    }
+  };
 
-        setIcon(parsedData.profileImage);
-        setName(parsedData.name);
-        setBio(parsedData.bio);
-        setEmail(parsedData.email);
-        setLinkedinUrl(`https://${parsedData.linkedinUrl}`);
-        setTwitterUrl(`https://${parsedData.twitterUrl}`);
-        setGithubUrl(`https://${parsedData.githubUrl}`);
-        console.log(">>>>>>",email);
-        return {
-          props: {
-            parsedData,
-          },
-        };
-      } catch (error) {
-        return {
-          notFound: true,
-        };
-      }
-    };
+  const { config } = usePrepareContractWrite({
+    address: contractAddress,
+    abi: abi,
+    functionName: "addMessage",
+    args: [username, message, utils.parseEther(amount.toString() || "0")],
+    overrides: {
+      value: utils.parseEther(amount.toString() || "0"),
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+    onSuccess: (receipt) => {
+      console.log(receipt);
+    },
+  });
+
+  const { data: msgData, write } = useContractWrite(config);
+
+  const { isLoading: isMsgLoading, isSuccess } = useWaitForTransaction({
+    hash: msgData?.hash,
+  });
+  
   useEffect(() => {
     if (data) {
-        console.log(data);
-
-        fetchData();
+      console.log(data);
+      fetchData();
     }
-    }, [data]);
-
-  useEffect(() => {
-  if (parsedData) {
-    try {
-       
-      } catch (error) {
-        console.error(error);
-      }
-     
-  }
-  }, [parsedData]);
+  }, [data]);
 
   return (
     <>
@@ -211,6 +225,7 @@ const User = ({ parsedData }: { parsedData: UserAccount }) => {
                 _hover={{ borderColor: "gray.700" }}
                 _focus={{ borderColor: "purple.500" }}
                 color={"gray.600"}
+                onChange={(e) => setMessage(e.target.value)}
               ></Input>
               <Stack mt={2} direction={"row"} spacing={2}>
                 <NumberInput width={"100%"}>
@@ -225,6 +240,7 @@ const User = ({ parsedData }: { parsedData: UserAccount }) => {
                     borderColor={"gray.500"}
                     _focus={{ borderColor: "purple.500" }}
                     _hover={{ borderColor: "gray.700" }}
+                    onChange={(e) => setAmount(e.target.value)}
                   />
                   <NumberInputStepper>
                     <NumberIncrementStepper color={"gray.500"} />
@@ -249,8 +265,12 @@ const User = ({ parsedData }: { parsedData: UserAccount }) => {
                   _focus={{
                     bg: "purple.600",
                   }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    write?.();
+                  }}
                 >
-                  Send DOJ
+                  Send 5ire
                 </Button>
               </Stack>
             </form>

@@ -50,7 +50,6 @@ export const Form = () => {
 
   const { address } = useAccount();
 
-
   const profile = {
     profileImage: icon,
     name: name,
@@ -65,18 +64,13 @@ export const Form = () => {
     address: contractAddress,
     abi: abi,
     functionName: "createProfile",
-    args: [
-      userName,
-      cid,
-      address
-    ],
+    args: [userName, cid, address],
     onError: (error) => {
-      console.log(error)
+      console.log(error);
     },
     onSuccess: (receipt) => {
-      
       console.log(receipt);
-    }
+    },
   });
 
   const { data, write } = useContractWrite(config);
@@ -86,7 +80,10 @@ export const Form = () => {
     hash: data?.hash,
   });
   const uploadData = async () => {
-    const client = new Web3Storage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDkxZTRjOEMwNTJiMzkzNEQ3Nzc5NWM3QWQ3MkQ0MTFhMGQyMWUxODIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzE2ODYwNTU1NjIsIm5hbWUiOiJNYXRpYy1Qcm9maWxlIn0.zDWjIoqZUCnPXtvWXjm_ZbvPN2ZZHTfcK7JHdM2S7hk" });
+    const client = new Web3Storage({
+      token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDkxZTRjOEMwNTJiMzkzNEQ3Nzc5NWM3QWQ3MkQ0MTFhMGQyMWUxODIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzE2ODYwNTU1NjIsIm5hbWUiOiJNYXRpYy1Qcm9maWxlIn0.zDWjIoqZUCnPXtvWXjm_ZbvPN2ZZHTfcK7JHdM2S7hk",
+    });
     client
       .put([new File([JSON.stringify(profile)], `${address}.json`)])
       .then(async (cidvalue) => {
@@ -115,12 +112,14 @@ export const Form = () => {
     if (router.isReady) {
       setLoading(false);
     }
-  },
-    [router.isReady]);
+  }, [router.isReady]);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const files = (e.target as HTMLInputElement).files!;
-    const client = new Web3Storage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDkxZTRjOEMwNTJiMzkzNEQ3Nzc5NWM3QWQ3MkQ0MTFhMGQyMWUxODIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzE2ODYwNTU1NjIsIm5hbWUiOiJNYXRpYy1Qcm9maWxlIn0.zDWjIoqZUCnPXtvWXjm_ZbvPN2ZZHTfcK7JHdM2S7hk" });
+    const client = new Web3Storage({
+      token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDkxZTRjOEMwNTJiMzkzNEQ3Nzc5NWM3QWQ3MkQ0MTFhMGQyMWUxODIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzE2ODYwNTU1NjIsIm5hbWUiOiJNYXRpYy1Qcm9maWxlIn0.zDWjIoqZUCnPXtvWXjm_ZbvPN2ZZHTfcK7JHdM2S7hk",
+    });
     client.put(files).then((cid: any) => {
       console.log(cid);
       setIcon(`https://${cid}.ipfs.w3s.link/${files[0].name}`);
@@ -213,9 +212,7 @@ export const Form = () => {
                       _placeholder={{ color: "gray.500" }}
                       color={"gray.800"}
                       type="text"
-                      onChange={(e) =>
-                        setUserName(e.target.value)
-                      }
+                      onChange={(e) => setUserName(e.target.value)}
                       value={userName}
                     />
                   </FormControl>
@@ -413,7 +410,6 @@ export const Form = () => {
                 </Button>
               </Flex>
               {step === 2 ? (
-                
                 <Button
                   bg={"purple.500"}
                   //   colorScheme="purple"
@@ -423,30 +419,28 @@ export const Form = () => {
                   type="submit"
                   onClick={() => {
                     uploadData();
-
                   }}
                 >
                   Upload Data
                 </Button>
               ) : null}
 
-<Button
-                  bg={"purple.500"}
-                  //   colorScheme="purple"
-                  color={"gray.100"}
-                  _hover={{ bg: "#732fff", color: "gray.100" }}
-                  w="9rem"
-                  type="submit"
-                  onClick={() => {
-                    console.log("user name",userName);
-                    console.log("user cid",cid);
-                    console.log("user address",address);
-                   write();
-
-                  }}
-                >
-                  Create Profile
-                </Button>
+              <Button
+                bg={"purple.500"}
+                //   colorScheme="purple"
+                color={"gray.100"}
+                _hover={{ bg: "#732fff", color: "gray.100" }}
+                w="9rem"
+                type="submit"
+                onClick={() => {
+                  console.log("user name", userName);
+                  console.log("user cid", cid);
+                  console.log("user address", address);
+                  write?.();
+                }}
+              >
+                Create Profile
+              </Button>
             </Flex>
           </ButtonGroup>
         </Box>
