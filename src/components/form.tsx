@@ -54,6 +54,7 @@ export const Form = () => {
     profileImage: icon,
     name: name,
     bio: bio,
+    username: userName,
     email: email,
     linkedinUrl: linkedinUrl,
     twitterUrl: twitterUrl,

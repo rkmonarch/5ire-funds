@@ -78,7 +78,7 @@
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct UsernameMessages.UserMessage[]",
+				"internalType": "struct FireFund.UserMessage[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -109,7 +109,38 @@
 						"type": "address"
 					}
 				],
-				"internalType": "struct UsernameMessages.UserDetails",
+				"internalType": "struct FireFund.UserDetails",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "walletAddress",
+				"type": "address"
+			}
+		],
+		"name": "getUserDetailsByAddress",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "cid",
+						"type": "string"
+					},
+					{
+						"internalType": "address payable",
+						"name": "userAddress",
+						"type": "address"
+					}
+				],
+				"internalType": "struct FireFund.UserDetails",
 				"name": "",
 				"type": "tuple"
 			}
