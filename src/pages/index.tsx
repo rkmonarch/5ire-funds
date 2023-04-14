@@ -63,7 +63,7 @@ export default function Home() {
               rounded={"full"}
               px={6}
               onClick={() => {
-                router.push("/createprofile");
+                router.push("/create");
               }}
             >
               Create Profile
