@@ -2,10 +2,9 @@ import { Box, Flex, Stack, StackDivider, Text } from "@chakra-ui/react";
 import React from "react";
 
 interface txnDetails {
-  from: string;
-  txn: string;
-  matic: string;
+  amount: number;
   message: string;
+  senderAddress: string;
   timestamp: number;
 }
 
@@ -17,11 +16,11 @@ export default function TxnCard({ txn }: { txn: txnDetails[] }) {
           <Box>
             <Flex alignItems={"center"}>
               <Box>
-                <Text fontSize={"md"}>Address: {item.from}</Text>
+                <Text fontSize={"md"}>From: {item.senderAddress}</Text>
               </Box>
             </Flex>
             <Box justifyContent={"end"} alignContent={"end"}>
-              Matic {item.matic}
+              Amount {item.amount} 5ire
             </Box>
             <Text pt="2" fontSize="md" fontWeight={"bold"}>
               {item.message}

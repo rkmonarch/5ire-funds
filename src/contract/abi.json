@@ -48,15 +48,20 @@
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "username",
-				"type": "string"
+				"internalType": "address",
+				"name": "userAddress",
+				"type": "address"
 			}
 		],
 		"name": "getAllMessages",
 		"outputs": [
 			{
 				"components": [
+					{
+						"internalType": "address",
+						"name": "senderAddress",
+						"type": "address"
+					},
 					{
 						"internalType": "string",
 						"name": "message",
@@ -73,7 +78,7 @@
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct FireFund.UserMessage[]",
+				"internalType": "struct UsernameMessages.UserMessage[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -104,7 +109,7 @@
 						"type": "address"
 					}
 				],
-				"internalType": "struct FireFund.UserDetails",
+				"internalType": "struct UsernameMessages.UserDetails",
 				"name": "",
 				"type": "tuple"
 			}

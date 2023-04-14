@@ -103,7 +103,7 @@ const Navbar = () => {
                       </Stack>
                     </Link>
                     <Link
-                      href="/viewprofile"
+                      href="/sampleprofile"
                       className="group display-block p-2 rounded-md hover:bg-white-200 hover:text-[#a13bf7]"
                     >
                       <Stack direction={"row"} align={"center"}>
