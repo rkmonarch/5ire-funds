@@ -96,6 +96,13 @@ export const Form = () => {
   useEffect(() => {
     if (cid) {
       console.log(cid);
+      toast({
+        title: "Uploading",
+        description: "Profile is being uploaded",
+        status: "info",
+        duration: 9000,
+        isClosable: true,
+      });
     }
   }, [cid]);
   useEffect(() => {

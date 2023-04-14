@@ -165,6 +165,17 @@ const User = ({ parsedData }: { parsedData: UserAccount }) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast({
+        title: "Message sent successfully",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }, [isSuccess]);
+
   return (
     <>
       <Head>
