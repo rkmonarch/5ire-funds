@@ -99,11 +99,8 @@ export default function Home() {
           </h1>
         </div>
         <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
-          <FeatureCard
-            icon={<BsFillFileEarmarkLockFill size={25} />}
-            title="Cross-Chain EVM Layer"
-            desc="Allow users from multiple chain to pool in assets and share token amount in this cross-chain dapp"
-          />
+        <FeatureCard icon={<BsFillFileEarmarkLockFill size={25} />} title="Proof of Benefit" desc="The 5irechain has SPoS consensus which enables 17 UN SDGs to drive ESG with better approach. That's where government agrees on common ground." />
+
           <FeatureCard
             icon={<MdSecurity size={25} />}
             title="Security"
