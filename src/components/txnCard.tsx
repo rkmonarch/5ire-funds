@@ -16,14 +16,17 @@ export default function TxnCard({ txn }: { txn: txnDetails[] }) {
           <Box>
             <Flex alignItems={"center"}>
               <Box>
-                <Text fontSize={"md"}>From: {item.senderAddress}</Text>
+                <Text
+                
+                fontSize={"md"}><b>From:</b> {item.senderAddress}</Text>
+              
               </Box>
             </Flex>
             <Box justifyContent={"end"} alignContent={"end"}>
-              Amount {item.amount} 5ire
+              <b>Amount: </b> {item.amount} 5ire
             </Box>
-            <Text pt="2" fontSize="md" fontWeight={"bold"}>
-              {item.message}
+            <Text pt="2" fontSize="md" >
+            <b>Message: </b>  {item.message}
             </Text>
           </Box>
           <br></br>

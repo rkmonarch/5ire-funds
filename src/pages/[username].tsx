@@ -232,7 +232,7 @@ const User = ({ parsedData }: { parsedData: UserAccount }) => {
               <Input
                 mt={5}
                 borderColor={"gray.500"}
-                placeholder={"Write your blessings"}
+                placeholder={"Write your message"}
                 _hover={{ borderColor: "gray.700" }}
                 _focus={{ borderColor: "purple.500" }}
                 color={"gray.600"}

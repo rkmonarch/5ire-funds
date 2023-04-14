@@ -402,7 +402,7 @@ export const Form = () => {
                 </Button>
                 <Button
                   w="7rem"
-                  isDisabled={step === 2}
+                  hidden={step === 2}
                   onClick={() => {
                     setStep(step + 1);
                     if (step === 2) {
@@ -429,7 +429,7 @@ export const Form = () => {
                     uploadData();
                   }}
                 >
-                  Upload Data
+                  Upload
                 </Button>
               ) : null}
 
