@@ -18,13 +18,14 @@ import {
   Center,
   Avatar,
 } from "@chakra-ui/react";
-import { contractAddress } from "/Users/rk/Documents/doj-fund/src/utils/constant"
+import { contractAddress } from "@/contract/constant";
 import {
   useAccount,
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
-} from "wagmi"; import abi from "../contract/abi.json";
+} from "wagmi";
+import abi from "../contract/abi.json";
 import { Web3Storage } from "web3.storage";
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -73,6 +74,7 @@ export const Form = () => {
       console.log(error)
     },
     onSuccess: (receipt) => {
+      
       console.log(receipt);
     }
   });
@@ -436,7 +438,10 @@ export const Form = () => {
                   w="9rem"
                   type="submit"
                   onClick={() => {
-                   write?.();
+                    console.log("user name",userName);
+                    console.log("user cid",cid);
+                    console.log("user address",address);
+                   write();
 
                   }}
                 >
