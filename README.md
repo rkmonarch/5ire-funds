@@ -1,3 +1,20 @@
+🤔 Tired of using centralized platforms like Linktree or Buy Me A Coffee? Want a solution that solves the problem of data ownership and platform fees? 
+
+💡 Introducing 5ire-funds, a web3 platform that allows you to store your data in a decentralized manner and conduct peer-to-peer transactions without any platform fees!  Say goodbye to high transaction fees and not having control over your data.
+
+🚀 Main features include:
+
+🛠️ Create your own on-chain profile for free, you need to pay minimal transaction fees to store your data on 5ire Chain. 
+
+🔗 Share your profile and receive payments directly in your wallet, without royalty! 
+
+🔒 With 5ire-funds, you have complete control over your data, and it's stored on the blockchain, making it more secure and tamper-proof. 
+
+💸 No more paying hefty fees to centralized platforms, with 5ire-funds, you can keep more of your earnings for yourself! 
+
+🚀 Upgrade your online presence and take control of your data with 5ire-funds! With our easy-to-use platform, you can create a professional profile, connect with potential clients and customers, and receive payments directly in your wallet. It's the perfect solution for freelancers, small business owners, and anyone looking to make their profile for themselves online.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
