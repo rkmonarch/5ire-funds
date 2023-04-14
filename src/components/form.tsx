@@ -61,8 +61,6 @@ export const Form = () => {
   };
 
   const { config } = usePrepareContractWrite({
-
-
     address: contractAddress,
     abi: abi,
     functionName: "createProfile",
@@ -92,7 +90,6 @@ export const Form = () => {
       .then(async (cidvalue) => {
         console.log(cidvalue);
         setcid(cidvalue);
-       
       });
   };
 
